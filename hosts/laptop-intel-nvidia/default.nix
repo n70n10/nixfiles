@@ -2,7 +2,7 @@
 
 {
   imports = [
-    "${nfs-private}/laptop-intel-nvidia"
+    "${nfs-private}/hardware/laptop-intel-nvidia.nix"
 
     ../../modules/shared/default.nix
     ../../modules/nvidia-gpu.nix
