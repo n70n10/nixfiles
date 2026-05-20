@@ -1,8 +1,8 @@
-{ config, pkgs, privateVars, nfs-private, ... }:
+{ config, pkgs, privateVars, nixfiles-private, ... }:
 
 {
   imports = [
-    "${nfs-private}/hardware/laptop-intel-nvidia.nix"
+    "${nixfiles-private}/hardware/laptop-intel-nvidia.nix"
 
     ../../modules/shared/default.nix
     ../../modules/nvidia-gpu.nix

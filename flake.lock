@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779113444,
-        "narHash": "sha256-/L61sT1PIKmGWIQpIh0uJGH/ANvcsf6y4alxtb9kelg=",
+        "lastModified": 1779213149,
+        "narHash": "sha256-Cf+p/T4Z3n9Sw0TiR3kQaIwQI+/hfvLJcoTzeq6yS3E=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "74f170c62d57f90e656841f1f699e6bdf40f0a24",
+        "rev": "bd868f769a69d3b6091a1da68a75cb83a181033c",
         "type": "github"
       },
       "original": {
@@ -20,14 +20,14 @@
         "type": "github"
       }
     },
-    "nfs-private": {
+    "nixfiles-private": {
       "flake": false,
       "locked": {
-        "lastModified": 1779119772,
-        "narHash": "sha256-AT1TzfyGXTI9SBxx8d1sXEtjG74xFBuRjT13waEtmc4=",
+        "lastModified": 1779275605,
+        "narHash": "sha256-VH01kwyClFJ9X15mcqk4c5RQilKgmGTp1iB21KRrT4E=",
         "ref": "refs/heads/main",
-        "rev": "3a25840a78e42fbab746eb24f6e02ec7ddc22fb6",
-        "revCount": 2,
+        "rev": "282f0cbd50584297abbc4b5c6bfb3680d8228527",
+        "revCount": 3,
         "type": "git",
         "url": "ssh://git@github.com/n70n10/nixfiles-private.git"
       },
@@ -55,7 +55,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nfs-private": "nfs-private",
+        "nixfiles-private": "nixfiles-private",
         "nixpkgs": "nixpkgs"
       }
     }

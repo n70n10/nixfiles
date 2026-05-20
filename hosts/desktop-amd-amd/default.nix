@@ -1,8 +1,8 @@
-{ config, pkgs, privateVars, nfs-private, ... }:
+{ config, pkgs, privateVars, nixfiles-private, ... }:
 
 {
   imports = [
-    "${nfs-private}/hardware/desktop-amd-amd.nix"
+    "${nixfiles-private}/hardware/desktop-amd-amd.nix"
 
     ../../modules/shared/default.nix
     ../../modules/amd-gpu.nix
