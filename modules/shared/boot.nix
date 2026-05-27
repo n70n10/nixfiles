@@ -1,25 +1,25 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # ── Swap ─────────────────────────────────────────────────────────────────
   boot.zswap = {
-    enable         = true;
-    compressor     = "zstd";
+    enable = true;
+    compressor = "zstd";
     maxPoolPercent = 20;
   };
 
-  swapDevices = [ {
-    device = "/swapfile";
-    size   = 16384; # 16GB (in MB)
-  } ];
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 16384; # 16GB (in MB)
+    }
+  ];
 
   # ── Kernel ────────────────────────────────────────────────────────────────
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.initrd = {
-    systemd.enable        = true;
-    supportedFilesystems  = [ "btrfs" ];
-    verbose               = false;
+    systemd.enable = true;
+    supportedFilesystems = ["btrfs"];
+    verbose = false;
   };
 
   boot.tmp.cleanOnBoot = true;
@@ -27,7 +27,7 @@
   # ── Plymouth boot splash ──────────────────────────────────────────────────
   boot.plymouth = {
     enable = true;
-    theme  = "bgrt";
+    theme = "bgrt";
   };
 
   # Silent boot — suppress kernel/systemd noise during splash
@@ -42,7 +42,7 @@
 
   # ── Bootloader ────────────────────────────────────────────────────────────
   boot.loader = {
-    systemd-boot.enable      = true;
+    systemd-boot.enable = true;
     systemd-boot.consoleMode = "auto";
     efi.canTouchEfiVariables = true;
   };

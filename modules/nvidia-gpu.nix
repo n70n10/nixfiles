@@ -1,16 +1,18 @@
-{ config, pkgs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # ── NVIDIA GPU ────────────────────────────────────────────────────────────
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
-    open    = true;
+    open = true;
     package = config.boot.kernelPackages.nvidiaPackages.beta;
 
-    modesetting.enable          = true;
-    nvidiaSettings              = true;
-    powerManagement.enable      = true;  # Enable on laptops
+    modesetting.enable = true;
+    nvidiaSettings = true;
+    powerManagement.enable = true; # Enable on laptops
     powerManagement.finegrained = true;
 
     prime = {
@@ -20,21 +22,21 @@
     };
   };
 
-  boot.kernelParams  = [
+  boot.kernelParams = [
     "nvidia-drm.fbdev=1"
   ];
 
   hardware.graphics = {
-    enable      = true;
+    enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [ nvidia-vaapi-driver ];
+    extraPackages = with pkgs; [nvidia-vaapi-driver];
   };
 
   # ── Wayland env vars ──────────────────────────────────────────────────────
   environment.variables = {
-    GBM_BACKEND               = "nvidia-drm";
+    GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    LIBVA_DRIVER_NAME         = "nvidia";
+    LIBVA_DRIVER_NAME = "nvidia";
   };
 
   # ── CPU microcode ─────────────────────────────────────────────────────────

@@ -1,6 +1,8 @@
-{ pkgs, lib, privateVars, ... }:
-
 {
+  pkgs,
+  privateVars,
+  ...
+}: {
   # ── Networking ────────────────────────────────────────────────────────────
   networking = {
     networkmanager.enable = true;
@@ -16,9 +18,9 @@
   # ── User ──────────────────────────────────────────────────────────────────
   users.users.${privateVars.username} = {
     isNormalUser = true;
-    description  = privateVars.fullname;
-    extraGroups  = [ "wheel" "networkmanager" "audio" "video" "input" "gamemode" "i2c" ];
-    shell        = pkgs.fish;
+    description = privateVars.fullname;
+    extraGroups = ["wheel" "networkmanager" "audio" "video" "input" "gamemode"];
+    shell = pkgs.bash;
   };
 
   # ── Shell ─────────────────────────────────────────────────────────────────
@@ -26,41 +28,43 @@
 
   # ── SSH ───────────────────────────────────────────────────────────────────
   services.openssh = {
-    enable   = true;
+    enable = true;
     settings = {
       PasswordAuthentication = false;
-      PermitRootLogin        = "no";
+      PermitRootLogin = "no";
     };
   };
 
   # ── Nix ───────────────────────────────────────────────────────────────────
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    auto-optimise-store   = true;
-    trusted-users         = [ "root" privateVars.username ];
-    max-jobs              = "auto";
-    cores                 = 0;
-    log-lines             = 50;
+    experimental-features = ["nix-command" "flakes"];
+    auto-optimise-store = true;
+    trusted-users = ["root" privateVars.username];
+    max-jobs = "auto";
+    cores = 0;
+    log-lines = 50;
   };
 
   nixpkgs.config.allowUnfree = true;
 
   # ── System packages ───────────────────────────────────────────────────────
   environment.systemPackages = with pkgs; [
-    gcc gnumake pkg-config  # build tools needed system-wide
-    wl-clipboard            # Wayland clipboard (compositor-agnostic)
+    gcc
+    gnumake
+    pkg-config # build tools needed system-wide
+    wl-clipboard # Wayland clipboard (compositor-agnostic)
   ];
 
   programs.direnv = {
-    enable            = true;
+    enable = true;
     nix-direnv.enable = true;
   };
 
   programs.nh = {
     enable = true;
-    flake  = "/home/${privateVars.username}/nixfiles";
+    flake = "/home/${privateVars.username}/nixfiles";
     clean = {
-      enable    = true;
+      enable = true;
       extraArgs = "--keep-since 7d --keep 3";
     };
   };
@@ -83,7 +87,7 @@
 
   # ── Security ──────────────────────────────────────────────────────────────
   security = {
-    protectKernelImage              = true;
+    protectKernelImage = true;
     # wheelNeedsPassword = false;  # Passwordless sudo for wheel (optional)
   };
 }

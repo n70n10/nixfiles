@@ -1,16 +1,15 @@
-{ privateVars, ... }:
-
-{
+{privateVars, ...}: {
   imports = [
     ./boot.nix
     ./core.nix
+    ./containers.nix
     ./hardware.nix
     ./gaming.nix
     ./plasma.nix
   ];
 
   home-manager = {
-    extraSpecialArgs = { inherit privateVars; };
+    extraSpecialArgs = {inherit privateVars;};
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "nixsave";

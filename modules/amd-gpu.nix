@@ -1,6 +1,4 @@
-{ config, pkgs, lib, ... }:
-
-{
+{pkgs, ...}: {
   # ── AMD GPU ───────────────────────────────────────────────────────────────
   hardware.graphics = {
     enable32Bit = true;
@@ -12,11 +10,11 @@
 
   # VA-API for hardware video acceleration
   environment.variables = {
-    LIBVA_DRIVER_NAME = "radeonsi";  # or "amdgpu"
+    LIBVA_DRIVER_NAME = "radeonsi"; # or "amdgpu"
   };
 
   # Unlock all power-play features (fan curves, overclocking headroom, etc.)
-  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
+  boot.kernelParams = ["amdgpu.ppfeaturemask=0xffffffff"];
 
   # ── CPU microcode ─────────────────────────────────────────────────────────
   hardware.cpu.amd.updateMicrocode = true;

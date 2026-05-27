@@ -1,6 +1,8 @@
-{ config, pkgs, privateVars, nixfiles-private, ... }:
-
 {
+  privateVars,
+  nixfiles-private,
+  ...
+}: {
   imports = [
     "${nixfiles-private}/hardware/desktop-amd-amd.nix"
 
@@ -11,7 +13,7 @@
   networking.hostName = privateVars.hostnames.desktop-amd-amd;
 
   services.xserver.xkb = {
-    layout  = "us";
+    layout = "us";
     options = "eurosign:e,caps:escape";
   };
 

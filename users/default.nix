@@ -1,11 +1,31 @@
-{ pkgs, privateVars, ... }:
-
 {
+  pkgs,
+  privateVars,
+  ...
+}: {
   # ── Ghostty terminal ──────────────────────────────────────────────────────
   programs.ghostty.enable = true;
 
+  # ── NeoVim ────────────────────────────────────────────────────────────────
+  programs.neovim = {
+    enable = true;
+    withRuby = false;
+    withPython3 = false;
+    plugins = with pkgs.vimPlugins; [
+      blink-cmp
+      blink-pairs
+    ];
+    initLua = ''
+      -- Pass control completely back to your real local configuration
+      local init_local = vim.fn.expand("~/.config/nvim/init_local.lua")
+      if vim.fn.filereadable(init_local) == 1 then
+          dofile(init_local)
+      end
+    '';
+  };
+
   home = {
-    username      = privateVars.username;
+    username = privateVars.username;
     homeDirectory = "/home/${privateVars.username}";
 
     packages = with pkgs; [
@@ -13,20 +33,63 @@
       emacs-pgtk
 
       # CLI tools
-      atuin bash-preexec bat chezmoi dysk eza fd gh git glab ripgrep
-      shellcheck starship stress-ng tealdeer television trash-cli
-      ugrep yq zoxide
+      atuin
+      bash-preexec
+      bat
+      chezmoi
+      dysk
+      eza
+      fd
+      gh
+      git
+      glab
+      ripgrep
+      shellcheck
+      starship
+      stress-ng
+      tealdeer
+      television
+      trash-cli
+      ugrep
+      yq
+      zoxide
 
       # Dev tools
-      lazygit delta jq nil nixfmt
+      lazygit
+      delta
+      jq
+
+      # LSP servers
+      bash-language-server
+      shellcheck
+      fish-lsp
+      yaml-language-server
+      lua-language-server
+      vscode-langservers-extracted # JSON
+      nil # Nix
+      taplo # TOML
+      markdown-oxide # Markdown
+      dockerfile-language-server
+
+      # Formatters
+      shfmt # Bash
+      alejandra # Nix
+      prettier # YAML, JSON, Markdown
+      # taplo doubles as formatter (already above)
+
+      # Spell checking
+      hunspell
+      hunspellDicts.en_US
+      hunspellDicts.en_GB-ise
+      hunspellDicts.it_IT
 
       # Utilities
       fastfetch
     ];
 
-    sessionPath = [ "$HOME/.local/bin" ];
+    sessionPath = ["$HOME/.local/bin"];
 
-    stateVersion  = "25.11";
+    stateVersion = "25.11";
   };
 
   programs.home-manager.enable = true;

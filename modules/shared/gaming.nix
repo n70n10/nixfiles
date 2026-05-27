@@ -1,17 +1,15 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   programs.gamescope = {
-    enable     = true;
-    capSysNice = false;  # broken in NixOS :(
+    enable = true;
+    capSysNice = false; # broken in NixOS :(
   };
 
   programs.steam = {
-    enable                       = true;
-    remotePlay.openFirewall      = true;
+    enable = true;
+    remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
-    extraCompatPackages          = [ pkgs.proton-ge-bin ];
-    gamescopeSession.enable      = true;
+    extraCompatPackages = [pkgs.proton-ge-bin];
+    gamescopeSession.enable = true;
   };
 
   programs.gamemode.enable = true;
