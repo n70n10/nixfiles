@@ -1,8 +1,14 @@
 { pkgs, privateVars, ... }: {
 
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = true;
+    autoPrune.enable = true;
+  };
+
   virtualisation.podman = {
     enable = true;
-    dockerCompat = true;
+    dockerCompat = false;
     defaultNetwork.settings.dns_enabled = true;
   };
 
@@ -13,12 +19,7 @@
   # 3. Clean system packages
   environment.systemPackages = with pkgs; [
     distrobox
-    podman-compose
     docker-compose
-    runc
-    conmon
-    skopeo
-    slirp4netns
-    fuse-overlayfs
+    lazydocker
   ];
 }

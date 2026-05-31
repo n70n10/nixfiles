@@ -23,11 +23,11 @@
     "nixfiles-private": {
       "flake": false,
       "locked": {
-        "lastModified": 1779275605,
-        "narHash": "sha256-VH01kwyClFJ9X15mcqk4c5RQilKgmGTp1iB21KRrT4E=",
+        "lastModified": 1779963361,
+        "narHash": "sha256-DRcUHXFoQi4HZH6XWCYpfyE1eIYHq2RptzWribxSGh8=",
         "ref": "refs/heads/main",
-        "rev": "282f0cbd50584297abbc4b5c6bfb3680d8228527",
-        "revCount": 3,
+        "rev": "85331de450b5e89576e3b3a8c73711b60d6ace9a",
+        "revCount": 5,
         "type": "git",
         "url": "ssh://git@github.com/n70n10/nixfiles-private.git"
       },

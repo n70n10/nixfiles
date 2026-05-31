@@ -2,10 +2,10 @@
   imports = [
     ./boot.nix
     ./core.nix
-    ./containers.nix
     ./hardware.nix
     ./gaming.nix
     ./plasma.nix
+    ./virtualisation.nix
   ];
 
   home-manager = {
