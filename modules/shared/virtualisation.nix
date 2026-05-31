@@ -13,7 +13,7 @@
   };
 
   users.users.${privateVars.username} = {
-    extraGroups = [ "podman" ];
+    extraGroups = [ "docker" ];
   };
 
   # 3. Clean system packages

@@ -6,24 +6,6 @@
   # ── Ghostty terminal ──────────────────────────────────────────────────────
   programs.ghostty.enable = true;
 
-  # ── NeoVim ────────────────────────────────────────────────────────────────
-  programs.neovim = {
-    enable = true;
-    withRuby = false;
-    withPython3 = false;
-    plugins = with pkgs.vimPlugins; [
-      blink-cmp
-      blink-pairs
-    ];
-    initLua = ''
-      -- Pass control completely back to your real local configuration
-      local init_local = vim.fn.expand("~/.config/nvim/init_local.lua")
-      if vim.fn.filereadable(init_local) == 1 then
-          dofile(init_local)
-      end
-    '';
-  };
-
   home = {
     username = privateVars.username;
     homeDirectory = "/home/${privateVars.username}";
