@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  privateVars,
   ...
 }: {
   # ── Desktop: KDE Plasma 6 ────────────────────────────────────────────────────
@@ -10,10 +11,10 @@
   services.displayManager.plasma-login-manager.enable = true;
 
   # Optional: auto-login (uncomment if desired)
-  # services.displayManager.autoLogin = {
-  #   enable = true;
-  #   user = secrets.username;
-  # };
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = privateVars.username;
+  };
 
   # Workaround for https://github.com/NixOS/nixpkgs/issues/432137
   # Qt can't find pipewire-0.3 at runtime — expose it via LD_LIBRARY_PATH

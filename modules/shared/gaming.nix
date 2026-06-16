@@ -14,6 +14,11 @@
 
   programs.gamemode.enable = true;
 
+  services.ananicy = {
+    enable = true;
+    package = pkgs.ananicy-cpp;
+  };
+
   environment.systemPackages = with pkgs; [
     mangohud
   ];

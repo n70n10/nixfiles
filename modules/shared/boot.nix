@@ -1,17 +1,15 @@
 {pkgs, ...}: {
   # ── Swap ─────────────────────────────────────────────────────────────────
-  boot.zswap = {
+  zramSwap = {
     enable = true;
-    compressor = "zstd";
-    maxPoolPercent = 20;
+    algorithm = "zstd";
   };
 
-  swapDevices = [
-    {
-      device = "/swapfile";
-      size = 16384; # 16GB (in MB)
-    }
-  ];
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 180;
+    "vm.page-cluster" = 0;
+    "vm.max_map_count" = 2147483642;
+  };
 
   # ── Kernel ────────────────────────────────────────────────────────────────
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -30,7 +28,6 @@
     theme = "bgrt";
   };
 
-  # Silent boot — suppress kernel/systemd noise during splash
   boot.consoleLogLevel = 3;
   boot.kernelParams = [
     "quiet"
@@ -38,6 +35,9 @@
     "boot.shell_on_fail"
     "udev.log_priority=3"
     "rd.systemd.show_status=auto"
+
+    "split_lock_detect=off"
+    "transparent_hugepage=madvise"
   ];
 
   # ── Bootloader ────────────────────────────────────────────────────────────

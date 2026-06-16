@@ -69,8 +69,6 @@
     };
   };
 
-  # ── Firefox ───────────────────────────────────────────────────────────────
-  programs.firefox.enable = true;
   # ── Flatpak ───────────────────────────────────────────────────────────────
   services.flatpak.enable = true;
   # Add Flathub once after install:

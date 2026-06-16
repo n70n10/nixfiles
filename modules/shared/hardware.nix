@@ -6,6 +6,16 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     jack.enable = true;
+
+    # Low-latency config: halve the default quantum (1024 → 512) for ~10ms
+    # less audio latency during gaming. Drop to 256 if you have no xruns.
+    extraConfig.pipewire."99-low-latency" = {
+      context.properties = {
+        default.clock.rate = 48000;
+        default.clock.quantum = 512;
+        default.clock.min-quantum = 256;
+      };
+    };
   };
 
   # ── Printing (AirPrint) ───────────────────────────────────────────────────
@@ -34,6 +44,9 @@
   # ── Disk / power ──────────────────────────────────────────────────────────
   services.udisks2.enable = true;
   services.fstrim.enable = true;
+
+  powerManagement.cpuFreqGovernor = "performance";
+  services.irqbalance.enable = true;
 
   # ── Firmware ──────────────────────────────────────────────────────────────
   hardware.enableRedistributableFirmware = true;

@@ -4,18 +4,18 @@
   ...
 }: {
   imports = [
-    "${nixfiles-private}/hardware/laptop-intel-nvidia.nix"
+    "${nixfiles-private}/hardware/${privateVars.hostnames.laptop-yellow}.nix"
 
     ../../modules/shared/default.nix
     ../../modules/nvidia-gpu.nix
   ];
 
-  networking.hostName = privateVars.hostnames.laptop-intel-nvidia;
+  networking.hostName = privateVars.hostnames.laptop-yellow;
 
   services.xserver.xkb = {
     layout = "ie";
     options = "eurosign:e,caps:escape";
   };
 
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05";
 }
